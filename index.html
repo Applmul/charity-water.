@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Water</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #162541;
+            --light-blue: #007bff;
+            --light-teal: #e8f5ff;
+            --gold: #fccf00;
+            --white: #ffffff;
+            --gray: #f4f4f4;
+            --text-color: #333;
+            --dark-overlay: rgba(0, 0, 0, 0.4);
+        }
+
+        /* General & Utility Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border: 2px solid var(--dark-blue);
+        }
+
+        .button-primary:hover {
+            background-color: transparent;
+            color: var(--dark-blue);
+        }
+
+        .button-secondary {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            border: 2px solid var(--gold);
+        }
+
+        .button-secondary:hover {
+            background-color: transparent;
+            color: var(--gold);
+        }
+
+        .button-hollow {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .button-hollow:hover {
+            background-color: var(--white);
+            color: var(--dark-blue);
+        }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 1.5rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            padding: 2rem;
+            background-image: url('https://placehold.co/1920x1080/007bff/ffffff?text=Charity+Water+Hero+Image');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-overlay);
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 600px;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Impact Stories Section */
+        .impact-stories {
+            padding: 5rem 0;
+        }
+
+        .impact-stories-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .quote-box {
+            background-color: var(--gray);
+            padding: 1.5rem;
+            border-left: 5px solid var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* In Action Section */
+        .in-action {
+            padding: 5rem 0;
+            background-color: var(--gray);
+        }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .action-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .action-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .action-card-content {
+            padding: 1.5rem;
+        }
+
+        .action-card-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Get Involved Section */
+        .get-involved {
+            background-color: var(--gold);
+            padding: 5rem 0;
+        }
+
+        .involved-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .involved-card {
+            text-align: center;
+        }
+
+        .involved-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Donate Here Section */
+        .donate-section {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 5rem 0;
+        }
+        
+        .donate-card {
+            background-color: var(--white);
+            color: var(--text-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Other Sections */
+        .image-text-section {
+            padding: 5rem 0;
+        }
+
+        .image-text-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .image-text-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-us {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 5rem 0;
+        }
+
+        .canva-section {
+            background-color: #e6cff5; /* A light purple from the design */
+            padding: 5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero {
+                height: auto;
+                padding-top: 10rem;
+                padding-bottom: 5rem;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .impact-stories-grid,
+            .image-text-grid,
+            .involved-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">Charity Water</a>
+            <a href="#" class="button button-hollow">Donate</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Ready to change the world for the price of a coffee?</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+                <a href="#" class="button button-secondary">Donate Now</a>
+            </div>
+        </section>
+
+        <!-- Impact Stories Section -->
+        <section class="impact-stories">
+            <div class="container">
+                <h2 class="text-center">Impact stories</h2>
+                <div class="impact-stories-grid">
+                    <div>
+                        <p>Learn how to create compelling visual narratives that inspire action, using your brand's unique style and messaging. Use your own imagery to help your story take shape.</p>
+                        <p>We'll show you how to do this in the next steps.</p>
+                    </div>
+                    <div>
+                        <div class="quote-box">
+                            <p>"This platform changed the way we share our mission. The process was simple, and the results were incredible."</p>
+                        </div>
+                        <div class="quote-box">
+                            <p>"I was able to create a beautiful, professional-looking page without any coding knowledge. It's truly game-changing."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- In Action Section -->
+        <section class="in-action">
+            <div class="container text-center">
+                <h2>In action</h2>
+                <div class="action-grid">
+                    <div class="action-card">
+                        <img src="https://placehold.co/600x400/ccc/333?text=Image+1" alt="People collaborating">
+                        <div class="action-card-content">
+                            <h3>VACCINE FOR ALL</h3>
+                            <p>An amazing example of how this brand has helped humanity.</p>
+                            <a href="#">Read more</a>
+                        </div>
+                    </div>
+                    <div class="action-card">
+                        <img src="https://placehold.co/600x400/ccc/333?text=Image+2" alt="Kids playing">
+                        <div class="action-card-content">
+                            <h3>PROJECT GREEN</h3>
+                            <p>Another incredible story of how this brand has helped humanity.</p>
+                            <a href="#">Read more</a>
+                        </div>
+                    </div>
+                    <div class="action-card">
+                        <img src="https://placehold.co/600x400/ccc/333?text=Image+3" alt="Community gathering">
+                        <div class="action-card-content">
+                            <h3>COMMUNITY</h3>
+                            <p>Another amazing story of how this brand has helped humanity.</p>
+                            <a href="#">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Involved Section -->
+        <section class="get-involved">
+            <div class="container text-center">
+                <h2>Get involved</h2>
+                <div class="involved-grid">
+                    <div class="involved-card">
+                        <h3>Donate</h3>
+                        <p>Make a difference in someone's life with a small gift. Every donation counts.</p>
+                        <a href="#" class="button button-primary">Donate</a>
+                    </div>
+                    <div class="involved-card">
+                        <h3>Volunteer</h3>
+                        <p>Give your time and skills to help our cause. Join our team of dedicated volunteers.</p>
+                        <a href="#" class="button button-primary">Volunteer</a>
+                    </div>
+                    <div class="involved-card">
+                        <h3>Spread the word</h3>
+                        <p>Share our mission with friends and family. A simple share can have a huge impact.</p>
+                        <a href="#" class="button button-primary">Spread the word</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donate Here Section -->
+        <section class="donate-section">
+            <div class="container text-center">
+                <h2>Donate here</h2>
+                <div class="donate-card">
+                    <img src="https://placehold.co/500x200/cccccc/333333?text=Donation+Widget" alt="Placeholder for a donation widget" style="max-width:100%; height:auto;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Image and Text Section -->
+        <section class="image-text-section">
+            <div class="container">
+                <div class="image-text-grid">
+                    <img src="https://placehold.co/600x400/e8e8e8/333?text=Placeholder+Image" alt="People in a field">
+                    <div>
+                        <p>Creating compelling stories for your brand has never been easier. We'll show you how to create the perfect landing page with your own unique style.</p>
+                        <p>Start your journey and bring your story to life, using your brand's unique visuals and messaging. It's time to inspire action.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section class="contact-us">
+            <div class="container">
+                <h2 class="text-center">Contact us</h2>
+                <p class="text-center">
+                    Phone: (000) 123-4567<br>
+                    Email: info@yourbrand.com<br>
+                    Address: 123 Main Street, City, State 12345
+                </p>
+            </div>
+        </section>
+
+        <!-- Canva Section -->
+        <section class="canva-section">
+            <div class="container text-center">
+                <h2>Embed fundraising into your Canva creations</h2>
+                <img src="https://placehold.co/1200x400/f1d7f8/333333?text=Canva+Integration+Steps" alt="Steps on how to embed fundraising into Canva" style="max-width:100%; height:auto;">
+            </div>
+        </section>
+    </main>
+
+    <footer class="contact-us">
+        <div class="container text-center">
+            <p>&copy; 2024 Your Brand. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+initial website code
